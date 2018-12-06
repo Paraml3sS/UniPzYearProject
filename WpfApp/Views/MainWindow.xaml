@@ -1,0 +1,41 @@
+﻿<Window x:Class="WpfApp.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:WpfApp.ViewModels"
+        xmlns:v="clr-namespace:WpfApp.Views"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="1000" WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="678*"/>
+        </Grid.ColumnDefinitions>-->
+
+        <TabControl TabStripPlacement="Left"
+                    x:Name="tabContol"
+                    ItemsSource="{Binding TabItems}"
+                    SelectedItem="{Binding SelectedTab}"
+                    >
+            <TabControl.Resources>
+                <DataTemplate DataType="{x:Type vm:UserListViewModel}">
+                    <v:UserListControl/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:RegistrationViewModel}">
+                    <v:RegistartionControl/>
+                </DataTemplate>
+            </TabControl.Resources>
+
+            <TabControl.ItemContainerStyle>
+                <Style TargetType="TabItem">
+                    <Setter Property="Header" Value="{Binding Header}"/>
+                    <Setter Property="Content" Value="{Binding Content}"/>
+                </Style>
+            </TabControl.ItemContainerStyle>
+        </TabControl>
+
+        
+    </Grid>
+</Window>
